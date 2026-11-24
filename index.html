@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abogados Asociados Ortiz Aguirre | Asesoría Jurídica Especializada</title>
+    <style>
+        /* ==========================================================================
+           RESETEO Y VARIABLES GLOBALES
+           ========================================================================== */
+        :root {
+            /* Paleta de Colores Obligatoria */
+            --bg-primary: #111827;     /* Azul oscuro principal */
+            --accent-green: #39A900;   /* Verde acento */
+            --accent-green-hover: #2e8800;
+            --text-light: #FFFFFF;     /* Blanco para textos/fondos claros */
+            --text-dark: #1F2937;
+            --bg-card: #FFFFFF;
+            --bg-light: #F9FAFB;
+            
+            /* Corrección del valor 'Dorado': Se define un tono dorado (#D4AF37) 
+               exclusivamente para detalles sutiles, bordes y separadores elegantes, 
+               respetando el valor #FFFFFF para áreas claras de la interfaz. */
+            --accent-gold: #D4AF37;
+
+            /* Tipografía del sistema para máximo rendimiento sin dependencias externas */
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ==========================================================================
+           1. ENCABEZADO Y NAVEGACIÓN
+           ========================================================================== */
+        .header {
+            background-color: var(--bg-primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-gold); /* Detalle en dorado */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .brand-logo {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 5rem;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--accent-green);
+        }
+
+        /* Menú Hamburguesa */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: var(--transition);
+            background-color: var(--text-light);
+            border-radius: 2px;
+        }
+
+        /* ==========================================================================
+           2. SECCIÓN PRINCIPAL (HERO)
+           ========================================================================== */
+        .hero {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            padding: 6rem 0 5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-gold); /* Detalle en dorado */
+            margin: 2rem auto 0;
+            border-radius: 2px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #E5E7EB;
+            max-width: 750px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(57, 169, 0, 0.4);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           3. TARJETAS DE SERVICIOS
+           ========================================================================== */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--bg-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #4B5563;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            top: 0;
+        }
+
+        .service-card:hover {
+            top: -5px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid var(--accent-gold); /* Detalle en dorado al pasar el cursor */
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #EAF6E5;
+            color: var(--accent-green);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: var(--bg-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: #4B5563;
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           4. PLANES DE ATENCIÓN
+           ========================================================================== */
+        .plans-section {
+            background-color: #F3F4F6;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #E5E7EB;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .plan-card.highlight {
+            border: 2px solid var(--accent-green);
+            position: relative;
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            padding: 0.2rem 1rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .plan-title {
+            font-size: 1.5rem;
+            color: var(--bg-primary);
+            margin-bottom: 1rem;
+        }
+
+        .plan-desc {
+            color: #4B5563;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ==========================================================================
+           5 & 6. FORMULARIO SIMULADO Y BOTÓN INTERACTIVO
+           ========================================================================== */
+        .contact-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--bg-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(57, 169, 0, 0.2);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-green-hover);
+        }
+
+        /* Mensaje de confirmación en pantalla */
+        .confirmation-message {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #DEF7EC;
+            color: #03543F;
+            border: 1px solid #84E1BC;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           7. PIE DE PÁGINA (FOOTER)
+           ========================================================================== */
+        .footer {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .footer-info p {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        .footer-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-contacts strong {
+            color: var(--accent-gold); /* Separación visual elegante */
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .phone-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .phone-link:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1F2937;
+            color: #6B7280;
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================================================
+           DISEÑO RESPONSIVE (MEDIA QUERIES)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--bg-primary);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+                border-bottom: 2px solid var(--accent-gold);
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+       1. ENCABEZADO Y NAVEGACIÓN
+       ========================================================================== -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="brand-logo">
+                Abogados Asociados <span>Ortiz Aguirre</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li class="nav-item"><a href="#planes" class="nav-link">Planes</a></li>
+                <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú de navegación">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================================================
+           2. SECCIÓN PRINCIPAL (HERO)
+           ========================================================================== -->
+        <section class="hero" id="inicio">
+            <div class="container">
+                <!-- Frase requerida exacta -->
+                <h1 class="hero-title">Asesorías, Experiencia y desde cualquier parte del mundo</h1>
+                <p class="hero-subtitle">10 años de trayectoria garantizando respaldo legal oportuno, ético y efectivo para personas naturales y empresas.</p>
+                <a href="#contacto" class="btn-cta">Solicitar Asesoría Ahora</a>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           3. TARJETAS DE SERVICIOS
+           ========================================================================== -->
+        <section class="section-padding" id="servicios">
+            <div class="container">
+                <h2 class="section-title">Nuestros Servicios Jurídicos</h2>
+                <p class="section-desc">Soluciones legales integrales adaptadas a sus necesidades particulares o corporativas.</p>
+                
+                <div class="services-grid">
+                    <!-- Servicio 1 -->
+                    <article class="service-card">
+                        <div class="service-icon">DC</div>
+                        <h3>Derecho Civil</h3>
+                        <p>Representación y asesoría en contratos, responsabilidad civil, bienes, sucesiones y reclamos patrimoniales con total solvencia técnica.</p>
+                    </article>
+
+                    <!-- Servicio 2 -->
+                    <article class="service-card">
+                        <div class="service-icon">DF</div>
+                        <h3>Derecho de Familia</h3>
+                        <p>Acompañamiento empático y riguroso en divorcios, custodia, cuotas alimentarias, adopciones y procesos filiales.</p>
+                    </article>
+
+                    <!-- Servicio 3 -->
+                    <article class="service-card">
+                        <div class="service-icon">DL</div>
+                        <h3>Derecho Laboral</h3>
+                        <p>Defensa de derechos laborales para trabajadores y consultoría preventiva para empresas en contratación y liquidaciones.</p>
+                    </article>
+
+                    <!-- Servicio 4 -->
+                    <article class="service-card">
+                        <div class="service-icon">AT</div>
+                        <h3>Asesorías en Tránsito</h3>
+                        <p>Gestión de fotomultas, impugnación de comparendos, procesos por accidentes de tránsito y trámites ante organismos de movilidad.</p>
+                    </article>
+
+                    <!-- Servicio 5 -->
+                    <article class="service-card">
+                        <div class="service-icon">DP</div>
+                        <h3>Derechos de Petición</h3>
+                        <p>Redacción estratégica y trámite eficaz de peticiones, tutelas y recursos para proteger sus garantías constitucionales frente a entidades públicas o privadas.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           4. PLANES DE ATENCIÓN
+           ========================================================================== -->
+        <section class="section-padding plans-section" id="planes">
+            <div class="container">
+                <h2 class="section-title">Modalidades de Atención</h2>
+                <p class="section-desc">Elija la modalidad que mejor se adapte a su ubicación y disponibilidad de tiempo.</p>
+
+                <div class="plans-grid">
+                    <!-- Plan Presencial -->
+                    <div class="plan-card">
+                        <div>
+                            <h3 class="plan-title">Presencial</h3>
+                            <p class="plan-desc">Atención personalizada y directa en nuestras sedes físicas. Ideal para revisión detallada de documentación física y reuniones corporativas estratégicas.</p>
+                        </div>
+                        <a href="#contacto" class="btn-cta">Elegir Presencial</a>
+                    </div>
+
+                    <!-- Plan Virtual -->
+                    <div class="plan-card highlight">
+                        <span class="plan-badge">Más Elegido</span>
+                        <div>
+                            <h3 class="plan-title">Virtual</h3>
+                            <p class="plan-desc">Asesoría 100% remota mediante videollamada o canales digitales. Diseñada para atender sus requerimientos sin desplazamientos, disponible desde cualquier parte del mundo.</p>
+                        </div>
+                        <a href="#contacto" class="btn-cta">Elegir Virtual</a>
+                    </div>
+
+                    <!-- Plan Mixto -->
+                    <div class="plan-card">
+                        <div>
+                            <h3 class="plan-title">Mixta</h3>
+                            <p class="plan-desc">Combina el seguimiento virtual continuo con sesiones presenciales puntuales para la firma o estructuración de procesos complejos.</p>
+                        </div>
+                        <a href="#contacto" class="btn-cta">Elegir Mixta</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           5 & 6. FORMULARIO SIMULADO CON INTERACCIÓN JAVASCRIPT
+           ========================================================================== -->
+        <section class="section-padding" id="contacto">
+            <div class="container">
+                <h2 class="section-title">Solicite su Consulta Legal</h2>
+                <p class="section-desc">Diligencie el siguiente formulario y nos pondremos en contacto a la brevedad.</p>
+
+                <div class="contact-container">
+                    <form id="infoForm" novalidate>
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" class="form-control" placeholder="Ej. María Pérez" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico *</label>
+                            <input type="email" id="correo" class="form-control" placeholder="ejemplo@correo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="plan">Modalidad de Interés</label>
+                            <select id="plan" class="form-control">
+                                <option value="Presencial">Presencial</option>
+                                <option value="Virtual" selected>Virtual</option>
+                                <option value="Mixta">Mixta</option>
+                            </select>
+                        </div>
+
+                        <!-- Botón interactivo -->
+                        <button type="submit" id="btnSubmit" class="btn-submit">Enviar Solicitud</button>
+                    </form>
+
+                    <!-- Mensaje de confirmación en pantalla -->
+                    <div id="confirmationMsg" class="confirmation-message">
+                        Solicitud enviada correctamente. Un asesor se comunicará contigo.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+       7. PIE DE PÁGINA (FOOTER)
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>Abogados Asociados Ortiz Aguirre</h4>
+                    <p>10 años ofreciendo respaldo legal, ético y oportuno.</p>
+                </div>
+
+                <div class="footer-contacts">
+                    <strong>Líneas Directas de Atención:</strong>
+                    <a href="tel:3204212836" class="phone-link">📱 320 421 2836</a>
+                    <a href="tel:3133605925" class="phone-link">📱 313 360 5925</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Abogados Asociados Ortiz Aguirre. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       LÓGICA JAVASCRIPT (VALIDACIÓN Y MENÚ)
+       ========================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Lógica del Menú Responsive (Hamburguesa) ---
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Cierra el menú móvil al hacer clic en cualquier enlace
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // --- Lógica de Validación y Envió de Formulario Simulado ---
+            const form = document.getElementById('infoForm');
+            const confirmationMsg = document.getElementById('confirmationMsg');
+
+            form.addEventListener('submit', (e) => {
+                // Previene la recarga del navegador (formulario simulado)
+                e.preventDefault();
+
+                // Obtención de valores limpios
+                const nombre = document.getElementById('nombre').value.trim();
+                const correo = document.getElementById('correo').value.trim();
+
+                // Validación 1: Campos obligatorios completos
+                if (nombre === '' || correo === '') {
+                    alert('Por favor completa todos los campos requeridos (Nombre y Correo Electrónico).');
+                    return;
+                }
+
+                // Validación 2: Formato básico de correo electrónico mediante Expresión Regular
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(correo)) {
+                    alert('Por favor ingresa un correo electrónico válido (ejemplo: usuario@dominio.com).');
+                    return;
+                }
+
+                // Confirmación exitosa: Muestra el mensaje en pantalla
+                confirmationMsg.style.display = 'block';
+
+                // Limpiar los campos del formulario tras la simulación de envío
+                form.reset();
+
+                // Desplazamiento suave hacia el mensaje de confirmación
+                confirmationMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+    </script>
+</body>
+</html>
